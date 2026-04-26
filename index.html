@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JalVistaar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="script.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" id="topbar">
+      <button class="icon-toggle" id="menuToggle" type="button" aria-label="Open module navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <button class="profile-trigger" id="profileTrigger" type="button" aria-label="View profile">
+        <span class="profile-avatar" id="profileAvatar">U</span>
+        <span class="profile-meta">
+          <strong id="topProfileName" data-i18n="profile.defaultName">User Profile</strong>
+          <small id="topProfileEmail" data-i18n="profile.defaultEmail">Tap to view details</small>
+        </span>
+      </button>
+    </header>
+
+    <main class="app-layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <p class="eyebrow" data-i18n="sidebar.titleSmall">Navigation</p>
+          <h2 data-i18n="sidebar.title">App Menu</h2>
+        </div>
+
+        <div class="sidebar-brand">
+          <strong>JalVistaar</strong>
+          <span data-i18n="sidebar.subtitle">Wetland ecosystem app</span>
+        </div>
+
+        <div class="language-box">
+          <label for="languageSelect" data-i18n="sidebar.language">Choose Language</label>
+          <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="mr">मराठी</option>
+          </select>
+        </div>
+
+        <nav class="module-nav">
+          <button class="module-link is-active" type="button" data-page="home" data-i18n="nav.home">Home</button>
+          <button class="module-link" type="button" data-page="contents" data-i18n="nav.contents">Main Sections</button>
+          <button class="module-link" type="button" data-page="dashboard" data-i18n="nav.dashboard">Overview</button>
+          <button class="module-link" type="button" data-page="multi-service" data-i18n="nav.multi">Wetland Benefits Value</button>
+          <button class="module-link" type="button" data-page="stacked-bar" data-i18n="nav.stacked">Service Chart</button>
+          <button class="module-link" type="button" data-page="scenario" data-i18n="nav.scenario">Plan Comparison</button>
+          <button class="module-link" type="button" data-page="per-hectare" data-i18n="nav.hectare">Per Hectare Value</button>
+          <button class="module-link" type="button" data-page="net-value" data-i18n="nav.net">Final Value</button>
+          <button class="module-link" type="button" data-page="wetland-map" data-i18n="nav.map">Wetland Map</button>
+          <button class="module-link" type="button" data-page="media" data-i18n="nav.media">Pictures and Videos</button>
+        </nav>
+      </aside>
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <section class="content-panel">
+        <section class="page-view is-active landing-page" data-page="home">
+          <section class="landing-shell simple-landing">
+            <div class="landing-copy landing-copy-centered">
+              <p class="eyebrow animated-fade" data-i18n="home.small">Wetland Intelligence App</p>
+              <h1 class="app-title">
+                <span>J</span><span>a</span><span>l</span><span>V</span><span>i</span><span>s</span><span>t</span><span>a</span><span>a</span><span>r</span>
+              </h1>
+              <p class="hero-text animated-fade delayed-text" data-i18n="home.desc">
+                This app helps people understand wetland benefits in a simple way. You can compare plans, see values, and study wetland services easily.
+              </p>
+              <div class="hero-actions animated-fade delayed-buttons">
+                <button class="button button-primary" id="enterAppButton" type="button" data-i18n="home.enter">Enter App</button>
+              </div>
+            </div>
+
+            <div class="wetland-gallery">
+              <article class="gallery-card gallery-card-large floating-card float-one">
+                <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80" alt="Wetland water landscape">
+                <div class="gallery-caption" data-i18n="home.gallery1">Wetland water</div>
+              </article>
+              <article class="gallery-card floating-card float-two">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Mangrove ecosystem">
+                <div class="gallery-caption" data-i18n="home.gallery2">Mangrove area</div>
+              </article>
+              <article class="gallery-card floating-card float-three">
+                <img src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=900&q=80" alt="Bird habitat">
+                <div class="gallery-caption" data-i18n="home.gallery3">Bird habitat</div>
+              </article>
+            </div>
+            <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+          </section>
+        </section>
+
+        <section class="page-view" data-page="contents">
+          <section class="contents-strip">
+            <div class="section-tag">
+              <p class="eyebrow" data-i18n="contents.small">Contents</p>
+              <h2 data-i18n="contents.title">Main Sections</h2>
+            </div>
+
+            <div class="home-modules-grid home-modules-grid-wide">
+              <button class="mini-module-card jump-button" type="button" data-page-target="dashboard">
+                <span>00</span>
+                <strong data-i18n="contents.cardDashboardTitle">Overview</strong>
+                <small data-i18n="contents.cardDashboardDesc">Quick summary of the app</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="multi-service">
+                <span>01</span>
+                <strong data-i18n="contents.card1Title">Wetland Benefits Value</strong>
+                <small data-i18n="contents.card1Desc">Total value of different wetland benefits</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="stacked-bar">
+                <span>02</span>
+                <strong data-i18n="contents.card2Title">Service Chart</strong>
+                <small data-i18n="contents.card2Desc">See how each service contributes</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="scenario">
+                <span>03</span>
+                <strong data-i18n="contents.card3Title">Plan Comparison</strong>
+                <small data-i18n="contents.card3Desc">Compare different wetland plans</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="per-hectare">
+                <span>04</span>
+                <strong data-i18n="contents.card4Title">Per Hectare Value</strong>
+                <small data-i18n="contents.card4Desc">Value for one hectare area</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="net-value">
+                <span>05</span>
+                <strong data-i18n="contents.card5Title">Final Value</strong>
+                <small data-i18n="contents.card5Desc">Value after cost deduction</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="media">
+                <span>06</span>
+                <strong data-i18n="contents.card6Title">Pictures and Videos</strong>
+                <small data-i18n="contents.card6Desc">Wetland gallery and YouTube links</small>
+              </button>
+              <button class="mini-module-card jump-button" type="button" data-page-target="wetland-map">
+                <span>07</span>
+                <strong data-i18n="contents.card7Title">Wetland Map</strong>
+                <small data-i18n="contents.card7Desc">Locate each wetland on an interactive map</small>
+              </button>
+            </div>
+            <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+          </section>
+        </section>
+
+        <section class="page-view" data-page="dashboard">
+          <section class="hero-panel home-dashboard-panel">
+            <div class="panel-heading dashboard-heading">
+              <div>
+                <p data-i18n="dashboard.title">Overview</p>
+                <span data-i18n="dashboard.subtitle">Simple summary of wetland data</span>
+              </div>
+
+              <div class="wetland-select-box">
+                <label for="wetlandSelect" data-i18n="dashboard.wetlandLabel">Choose Indian Wetland</label>
+                <select id="wetlandSelect">
+                  <option value="sundarbans">Sundarbans</option>
+                  <option value="chilika">Chilika Lake</option>
+                  <option value="loktak">Loktak Lake</option>
+                  <option value="wular">Wular Lake</option>
+                  <option value="vembanad">Vembanad Lake</option>
+                  <option value="pulicat">Pulicat Lake</option>
+                  <option value="harike">Harike Wetland</option>
+                  <option value="deepor">Deepor Beel</option>
+                  <option value="east-kolkata">East Kolkata Wetlands</option>
+                  <option value="keoladeo">Keoladeo National Park</option>
+                </select>
+              </div>
+            </div>
+
+            <article class="panel-card wetland-info-card">
+              <div class="wetland-info-top">
+                <div>
+                  <p class="eyebrow" data-i18n="dashboard.infoSmall">Wetland Info</p>
+                  <h3 id="wetlandInfoTitle">Sundarbans</h3>
+                </div>
+                <span class="status-pill status-pill-active" id="wetlandInfoRegion">West Bengal</span>
+              </div>
+              <p id="wetlandInfoText">
+                The Sundarbans is the world's largest mangrove wetland. It protects coastal areas, supports biodiversity, stores carbon, and helps fishing communities.
+              </p>
+            </article>
+
+            <article class="panel-card calculator-card wide-card">
+              <div class="calculator-header">
+                <div>
+                  <p class="eyebrow" data-i18n="dashboard.calcSmall">Live Input Calculator</p>
+                  <h3 data-i18n="dashboard.calcTitle">Enter Wetland Values</h3>
+                </div>
+                <span class="status-pill" data-i18n="dashboard.calcStatus">Real-time Output</span>
+              </div>
+
+              <div class="calculator-grid">
+                <div class="field-group">
+                  <label for="inputArea" data-i18n="dashboard.inputArea">Wetland Area (ha)</label>
+                  <input id="inputArea" type="number" min="1" value="135">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputBiodiversity" data-i18n="dashboard.inputBio">Biodiversity Value (₹)</label>
+                  <input id="inputBiodiversity" type="number" min="0" value="1840000">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputWater" data-i18n="dashboard.inputWater">Water Value (₹)</label>
+                  <input id="inputWater" type="number" min="0" value="1575000">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputCarbon" data-i18n="dashboard.inputCarbon">Carbon Value (₹)</label>
+                  <input id="inputCarbon" type="number" min="0" value="960000">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputLivelihood" data-i18n="dashboard.inputLive">Livelihood Value (₹)</label>
+                  <input id="inputLivelihood" type="number" min="0" value="1125000">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputManagement" data-i18n="dashboard.inputMgmt">Management Cost (₹)</label>
+                  <input id="inputManagement" type="number" min="0" value="420000">
+                </div>
+
+                <div class="field-group">
+                  <label for="inputProtection" data-i18n="dashboard.inputProtect">Protection Cost (₹)</label>
+                  <input id="inputProtection" type="number" min="0" value="180000">
+                </div>
+              </div>
+            </article>
+
+            <div class="metric-grid dashboard-metric-grid">
+              <article class="metric-card accent-a">
+                <span data-i18n="dashboard.metric1">Total Wetland Value</span>
+                <strong id="dashboardTotalValue">₹55,00,000</strong>
+                <small data-i18n="dashboard.metric1Desc">Combined ecosystem service value</small>
+              </article>
+              <article class="metric-card accent-b">
+                <span data-i18n="dashboard.metric2">Per Hectare Value</span>
+                <strong id="dashboardPerHectareValue">₹40,741</strong>
+                <small data-i18n="dashboard.metric2Desc">Value for each hectare of wetland</small>
+              </article>
+              <article class="metric-card accent-c">
+                <span data-i18n="dashboard.metric3">Net Value</span>
+                <strong id="dashboardNetValue">₹49,00,000</strong>
+                <small data-i18n="dashboard.metric3Desc">After management and protection costs</small>
+              </article>
+            </div>
+            <div class="nature-band" aria-hidden="true">
+              <div class="tree tree-left">
+                <div class="tree-canopy"></div>
+                <div class="tree-trunk"></div>
+              </div>
+
+              <div class="tree tree-right">
+                <div class="tree-canopy"></div>
+                <div class="tree-trunk"></div>
+              </div>
+
+              <span class="leaf leaf-one"></span>
+              <span class="leaf leaf-two"></span>
+              <span class="leaf leaf-three"></span>
+              <span class="leaf leaf-four"></span>
+
+              <div class="water-layer water-back"></div>
+              <div class="water-layer water-front"></div>
+              <div class="water-ripple ripple-one"></div>
+              <div class="water-ripple ripple-two"></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-view" data-page="multi-service">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="multi.small">Module 01</p>
+              <h2 data-i18n="multi.title">Wetland Benefits Value</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card">
+              <h3 data-i18n="multi.cardTitle">Benefit values</h3>
+              <div class="service-list">
+                <div class="service-row"><span data-i18n="multi.row1">Biodiversity support</span><strong id="multiBiodiversityValue">₹ 18,40,000</strong></div>
+                <div class="service-row"><span data-i18n="multi.row2">Water cleaning</span><strong id="multiWaterValue">₹ 15,75,000</strong></div>
+                <div class="service-row"><span data-i18n="multi.row3">Carbon storage</span><strong id="multiCarbonValue">₹ 9,60,000</strong></div>
+                <div class="service-row"><span data-i18n="multi.row4">Livelihood support</span><strong id="multiLivelihoodValue">₹ 11,25,000</strong></div>
+              </div>
+            </article>
+
+            <article class="panel-card emphasis-card">
+              <h3 data-i18n="multi.totalTitle">Total wetland value</h3>
+              <div class="big-number" id="multiTotalValue">₹ 55,00,000</div>
+              <p data-i18n="multi.totalDesc">Estimated yearly value of all wetland benefits</p>
+            </article>
+
+            <article class="panel-card wide-card">
+              <div class="mini-stat-grid">
+                <div class="mini-stat"><span data-i18n="multi.stat1">Wetland type</span><strong data-i18n="multi.stat1Value">Floodplain wetland</strong></div>
+                <div class="mini-stat"><span data-i18n="multi.stat2">State</span><strong id="multiStateValue">West Bengal</strong></div>
+                <div class="mini-stat"><span data-i18n="multi.stat3">Area used</span><strong id="multiAreaValue">135 ha</strong></div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+        </section>
+
+        <section class="page-view" data-page="stacked-bar">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="stacked.small">Module 02</p>
+              <h2 data-i18n="stacked.title">Service Chart</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card wide-card">
+              <h3 data-i18n="stacked.cardTitle">Current wetland service chart</h3>
+
+              <div class="chart-controls current-chart-controls">
+                <div class="control-card">
+                  <label for="biodiversityRange" data-i18n="services.bio">Biodiversity</label>
+                  <input type="range" id="biodiversityRange" min="1" max="100" value="30">
+                  <span id="biodiversityValue">30%</span>
+                </div>
+
+                <div class="control-card">
+                  <label for="waterRange" data-i18n="services.water">Water</label>
+                  <input type="range" id="waterRange" min="1" max="100" value="28">
+                  <span id="waterValue">28%</span>
+                </div>
+
+                <div class="control-card">
+                  <label for="carbonRange" data-i18n="services.carbon">Carbon</label>
+                  <input type="range" id="carbonRange" min="1" max="100" value="16">
+                  <span id="carbonValue">16%</span>
+                </div>
+
+                <div class="control-card">
+                  <label for="livelihoodRange" data-i18n="services.live">Livelihood</label>
+                  <input type="range" id="livelihoodRange" min="1" max="100" value="26">
+                  <span id="livelihoodValue">26%</span>
+                </div>
+              </div>
+
+              <div class="stacked-bars dynamic-chart vertical-chart">
+                <div class="chart-group">
+                  <label data-i18n="chart.current">Current Wetland</label>
+                  <div class="bar-track vertical-track">
+                    <span class="bar habitat" id="currentBiodiversityBar">Biodiversity</span>
+                    <span class="bar water" id="currentWaterBar">Water</span>
+                    <span class="bar carbon" id="currentCarbonBar">Carbon</span>
+                    <span class="bar cultural" id="currentLivelihoodBar">Livelihood</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel-card accent-panel">
+              <h3 data-i18n="stacked.benchmarkTitle">Easy reading</h3>
+              <div class="mini-stat-grid two-col">
+                <div class="mini-stat"><span data-i18n="stacked.bench1">Most water value</span><strong id="peakWaterLabel" data-i18n="stacked.bench1Value">Restored plan</strong></div>
+                <div class="mini-stat"><span data-i18n="stacked.bench2">Highest custom share</span><strong id="customPeakLabel">Biodiversity</strong></div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+
+        </section>
+
+        <section class="page-view" data-page="scenario">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="scenario.small">Module 03</p>
+              <h2 data-i18n="scenario.title">Plan Comparison</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card wide-card">
+              <h3 data-i18n="scenario.cardTitle">Choose a plan</h3>
+              <div class="scenario-switcher">
+                <button class="scenario-button is-active" type="button" data-area="135" data-net="5500000" data-hectare="40741" data-i18n="scenario.btn1">Current Wetland</button>
+                <button class="scenario-button" type="button" data-area="150" data-net="6840000" data-hectare="45600" data-i18n="scenario.btn2">Restored Marsh</button>
+                <button class="scenario-button" type="button" data-area="128" data-net="7296000" data-hectare="57000" data-i18n="scenario.btn3">Mangrove Shield</button>
+              </div>
+
+              <div class="scenario-output-grid">
+                <article class="output-card"><span data-i18n="scenario.out1">Wetland area</span><strong id="areaValue">135 ha</strong></article>
+                <article class="output-card"><span data-i18n="scenario.out2">Net value</span><strong id="netValue">₹ 55,00,000</strong></article>
+                <article class="output-card"><span data-i18n="scenario.out3">Per hectare value</span><strong id="perHectareValue">₹ 40,741</strong></article>
+              </div>
+            </article>
+
+            <article class="panel-card accent-panel">
+              <h3 data-i18n="scenario.infoTitle">Plan information</h3>
+              <div class="mini-stat-grid two-col">
+                <div class="mini-stat"><span data-i18n="scenario.info1">Region</span><strong data-i18n="scenario.info1Value">Sundarbans belt</strong></div>
+                <div class="mini-stat"><span data-i18n="scenario.info2">Focus</span><strong data-i18n="scenario.info2Value">Resilience and services</strong></div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+
+        </section>
+
+        <section class="page-view" data-page="per-hectare">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="hectare.small">Module 04</p>
+              <h2 data-i18n="hectare.title">Per Hectare Value</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card">
+              <h3 data-i18n="hectare.formulaTitle">Simple formula</h3>
+              <div class="formula-card" data-i18n="hectare.formula">Per-hectare value = Total ecosystem value / Wetland area</div>
+              <p id="hectareFormulaText">₹ 55,00,000 / 135 ha = ₹ 40,741 per hectare</p>
+            </article>
+
+            <article class="panel-card emphasis-card">
+              <h3 data-i18n="hectare.refTitle">Reference value</h3>
+              <div class="big-number" id="perHectareBigValue">₹ 40,741/ha</div>
+              <p data-i18n="hectare.refDesc">Simple value for comparing sites</p>
+            </article>
+
+            <article class="panel-card wide-card">
+              <div class="mini-stat-grid">
+                <div class="mini-stat"><span data-i18n="hectare.row1">Current wetland</span><strong id="currentWetlandPerHectare">₹ 40,741/ha</strong></div>
+                <div class="mini-stat"><span data-i18n="hectare.row2">Restored marsh</span><strong>₹ 45,600/ha</strong></div>
+                <div class="mini-stat"><span data-i18n="hectare.row3">Mangrove shield</span><strong>₹ 57,000/ha</strong></div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+
+        </section>
+
+        <section class="page-view" data-page="net-value">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="net.small">Module 05</p>
+              <h2 data-i18n="net.title">Final Value</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card">
+              <h3 data-i18n="net.cardTitle">Value after costs</h3>
+              <div class="calc-list">
+                <div class="calc-row"><span data-i18n="net.row1">Total wetland value</span><strong id="netTotalServiceValue">₹ 55,00,000</strong></div>
+                <div class="calc-row"><span data-i18n="net.row2">Management cost</span><strong id="netManagementCostValue">- ₹ 4,20,000</strong></div>
+                <div class="calc-row"><span data-i18n="net.row3">Protection cost</span><strong id="netProtectionCostValue">- ₹ 1,80,000</strong></div>
+                <div class="calc-row total-row"><span data-i18n="net.row4">Final value</span><strong id="netFinalValueRow">₹ 49,00,000</strong></div>
+              </div>
+            </article>
+
+            <article class="panel-card emphasis-card">
+              <h3 data-i18n="net.finalTitle">Final result</h3>
+              <div class="big-number" id="netBigValue">₹ 49,00,000</div>
+              <p data-i18n="net.finalDesc">Wetland value after subtracting costs</p>
+            </article>
+
+            <article class="panel-card wide-card">
+              <div class="mini-stat-grid">
+                <div class="mini-stat"><span data-i18n="net.info1">Site model</span><strong data-i18n="net.info1Value">Coastal wetland</strong></div>
+                <div class="mini-stat"><span data-i18n="net.info2">Report unit</span><strong data-i18n="net.info2Value">Yearly estimate</strong></div>
+                <div class="mini-stat"><span data-i18n="net.info3">Use</span><strong data-i18n="net.info3Value">Restoration planning</strong></div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+
+        </section>
+
+        <section class="page-view" data-page="media">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="media.small">Module 06</p>
+              <h2 data-i18n="media.title">Pictures and Videos</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card wide-card">
+              <div class="media-header">
+                <div>
+                  <p class="eyebrow" data-i18n="media.headerSmall">Wetland Gallery</p>
+                  <h3 data-i18n="media.headerTitle">Select an Indian Wetland</h3>
+                </div>
+                <span class="status-pill" data-i18n="media.headerTag">Images + Video</span>
+              </div>
+
+              <div class="wetland-media-tabs">
+                <button class="wetland-media-tab is-active" type="button" data-wetland="sundarbans">Sundarbans</button>
+                <button class="wetland-media-tab" type="button" data-wetland="chilika">Chilika Lake</button>
+                <button class="wetland-media-tab" type="button" data-wetland="loktak">Loktak Lake</button>
+                <button class="wetland-media-tab" type="button" data-wetland="wular">Wular Lake</button>
+                <button class="wetland-media-tab" type="button" data-wetland="vembanad">Vembanad Lake</button>
+                <button class="wetland-media-tab" type="button" data-wetland="pulicat">Pulicat Lake</button>
+                <button class="wetland-media-tab" type="button" data-wetland="harike">Harike Wetland</button>
+                <button class="wetland-media-tab" type="button" data-wetland="deepor">Deepor Beel</button>
+                <button class="wetland-media-tab" type="button" data-wetland="east-kolkata">East Kolkata Wetlands</button>
+                <button class="wetland-media-tab" type="button" data-wetland="keoladeo">Keoladeo National Park</button>
+              </div>
+
+              <div class="media-display-card">
+                <div class="media-info-top">
+                  <div>
+                    <p class="eyebrow" data-i18n="media.selectedSmall">Selected Wetland</p>
+                    <h3 id="mediaWetlandTitle">Sundarbans</h3>
+                  </div>
+                  <span class="status-pill status-pill-active" id="mediaWetlandRegion">West Bengal</span>
+                </div>
+
+                <p class="media-fact" id="mediaWetlandFact">
+                  Largest mangrove wetland in the world, important for coastal protection and biodiversity.
+                </p>
+
+                <div class="wetland-gallery-grid">
+                  <article class="wetland-photo-card">
+                    <img id="mediaImageOne" src="" alt="Wetland image 1">
+                    <div class="wetland-photo-caption" id="mediaCaptionOne">Wetland view</div>
+                  </article>
+
+                  <article class="wetland-photo-card">
+                    <img id="mediaImageTwo" src="" alt="Wetland image 2">
+                    <div class="wetland-photo-caption" id="mediaCaptionTwo">Wetland biodiversity</div>
+                  </article>
+                </div>
+
+                <div class="media-video-row">
+                  <a id="mediaVideoLink" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer" data-i18n="media.videoButton">
+                    Watch YouTube Video
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+  <div class="tree tree-left">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <div class="tree tree-right">
+    <div class="tree-canopy"></div>
+    <div class="tree-trunk"></div>
+  </div>
+
+  <span class="leaf leaf-one"></span>
+  <span class="leaf leaf-two"></span>
+  <span class="leaf leaf-three"></span>
+  <span class="leaf leaf-four"></span>
+
+  <div class="water-layer water-back"></div>
+  <div class="water-layer water-front"></div>
+  <div class="water-ripple ripple-one"></div>
+  <div class="water-ripple ripple-two"></div>
+</div>
+
+        </section>
+        <section class="page-view" data-page="wetland-map">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="map.small">Module 07</p>
+              <h2 data-i18n="map.title">Wetland Map</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+
+          <div class="page-grid map-page-grid">
+            <article class="panel-card wetland-map-panel wide-card">
+              <div class="media-header">
+                <div>
+                  <p class="eyebrow" data-i18n="map.headerSmall">Interactive Location Map</p>
+                  <h3 data-i18n="map.headerTitle">Click a wetland to zoom in</h3>
+                </div>
+                <span class="status-pill" id="mapSelectedRegion">India</span>
+              </div>
+
+              <div class="map-shell">
+                <div class="map-list" id="mapWetlandList">
+                  <button class="map-wetland-button is-active" type="button" data-wetland="sundarbans">Sundarbans</button>
+                  <button class="map-wetland-button" type="button" data-wetland="chilika">Chilika Lake</button>
+                  <button class="map-wetland-button" type="button" data-wetland="loktak">Loktak Lake</button>
+                  <button class="map-wetland-button" type="button" data-wetland="wular">Wular Lake</button>
+                  <button class="map-wetland-button" type="button" data-wetland="vembanad">Vembanad Lake</button>
+                  <button class="map-wetland-button" type="button" data-wetland="pulicat">Pulicat Lake</button>
+                  <button class="map-wetland-button" type="button" data-wetland="harike">Harike Wetland</button>
+                  <button class="map-wetland-button" type="button" data-wetland="deepor">Deepor Beel</button>
+                  <button class="map-wetland-button" type="button" data-wetland="east-kolkata">East Kolkata Wetlands</button>
+                  <button class="map-wetland-button" type="button" data-wetland="keoladeo">Keoladeo National Park</button>
+                </div>
+
+                <div class="map-frame">
+                  <div id="wetlandMap" class="wetland-map"></div>
+                </div>
+              </div>
+
+              <div class="map-info-card">
+                <p class="eyebrow" data-i18n="map.selectedSmall">Selected Wetland</p>
+                <h3 id="mapWetlandTitle">Sundarbans</h3>
+                <p id="mapWetlandInfo">Largest mangrove wetland in the world, important for coastal protection and biodiversity.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left">
+              <div class="tree-canopy"></div>
+              <div class="tree-trunk"></div>
+            </div>
+
+            <div class="tree tree-right">
+              <div class="tree-canopy"></div>
+              <div class="tree-trunk"></div>
+            </div>
+
+            <span class="leaf leaf-one"></span>
+            <span class="leaf leaf-two"></span>
+            <span class="leaf leaf-three"></span>
+            <span class="leaf leaf-four"></span>
+
+            <div class="water-layer water-back"></div>
+            <div class="water-layer water-front"></div>
+            <div class="water-ripple ripple-one"></div>
+            <div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="login-overlay" id="signinChoiceOverlay">
+    <div class="login-card choice-card">
+      <div class="login-card-head">
+        <p class="eyebrow" data-i18n="signinChoice.small">Welcome Back</p>
+        <h2 data-i18n="signinChoice.title">Choose how to continue</h2>
+        <p class="login-copy" id="savedUserSummary" data-i18n="signinChoice.desc">Use your previous details or sign in as a new user.</p>
+      </div>
+
+      <div class="signin-choice-actions">
+        <button type="button" class="button button-primary" id="continuePreviousBtn" data-i18n="signinChoice.previous">Sign In as Previous User</button>
+        <button type="button" class="button ghost-button" id="continueNewBtn" data-i18n="signinChoice.new">New Sign In</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-card-head">
+        <p class="eyebrow" data-i18n="login.small">Secure Access</p>
+        <h2 data-i18n="login.title">Sign In to JalVistaar</h2>
+        <p class="login-copy" data-i18n="login.desc">Enter your details below.</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="field-group">
+          <label for="loginName" data-i18n="login.name">Full Name</label>
+          <input id="loginName" type="text" required>
+        </div>
+
+        <div class="field-group">
+          <label for="loginEmail" data-i18n="login.email">Email Address</label>
+          <input id="loginEmail" type="email" required>
+        </div>
+
+        <div class="field-group">
+          <label for="loginPassword" data-i18n="login.password">Password</label>
+          <input id="loginPassword" type="password" required minlength="4">
+        </div>
+
+        <div class="field-group">
+          <label for="loginCollege" data-i18n="login.college">College / University</label>
+          <input id="loginCollege" type="text" required>
+        </div>
+
+        <div class="field-group">
+          <label for="loginDegree" data-i18n="login.degree">Degree</label>
+          <input id="loginDegree" type="text" data-placeholder="login.degreePlaceholder" placeholder="B.Tech / B.Sc / M.Tech" required>
+        </div>
+
+        <div class="field-group">
+          <label for="loginYear" data-i18n="login.year">Year of Study</label>
+          <select id="loginYear" required>
+            <option value="" data-i18n="login.yearSelect">Select year</option>
+            <option data-i18n="login.year1">1st Year</option>
+            <option data-i18n="login.year2">2nd Year</option>
+            <option data-i18n="login.year3">3rd Year</option>
+            <option data-i18n="login.year4">4th Year</option>
+            <option data-i18n="login.year5">Postgraduate</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="loginSpecialization" data-i18n="login.specialization">Specialization / Branch</label>
+          <input id="loginSpecialization" type="text" data-placeholder="login.specializationPlaceholder" placeholder="Environmental Engineering" required>
+        </div>
+
+        <p class="login-note" id="loginStatus" data-i18n="login.note">Your profile details will be stored in this browser.</p>
+
+        <button type="submit" class="button button-primary login-submit" data-i18n="login.submit">Sign In</button>
+        <button type="button" class="button ghost-button" id="closeLogin" data-i18n="common.cancel">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="profileOverlay">
+    <div class="login-card">
+      <div class="login-card-head">
+        <p class="eyebrow" data-i18n="profile.small">Profile</p>
+        <h2 data-i18n="profile.title">Your Details</h2>
+      </div>
+
+      <div class="profile-view-grid">
+        <div class="profile-view-item"><span data-i18n="profile.name">Name</span><strong id="viewName">-</strong></div>
+        <div class="profile-view-item"><span data-i18n="profile.email">Email</span><strong id="viewEmail">-</strong></div>
+        <div class="profile-view-item"><span data-i18n="profile.college">College</span><strong id="viewCollege">-</strong></div>
+        <div class="profile-view-item"><span data-i18n="profile.degree">Degree</span><strong id="viewDegree">-</strong></div>
+        <div class="profile-view-item"><span data-i18n="profile.year">Year</span><strong id="viewYear">-</strong></div>
+        <div class="profile-view-item"><span data-i18n="profile.specialization">Specialization</span><strong id="viewSpecialization">-</strong></div>
+      </div>
+
+      <button type="button" class="button ghost-button login-submit" id="logoutButton" data-i18n="profile.logout">Logout</button>
+      <button type="button" class="button button-primary login-submit" id="closeProfile" data-i18n="common.close">Close</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
