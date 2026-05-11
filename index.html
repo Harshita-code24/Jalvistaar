@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -19,13 +19,23 @@
         <span></span>
       </button>
 
-      <button class="profile-trigger" id="profileTrigger" type="button" aria-label="View profile">
-        <span class="profile-avatar" id="profileAvatar">U</span>
-        <span class="profile-meta">
-          <strong id="topProfileName" data-i18n="profile.defaultName">User Profile</strong>
-          <small id="topProfileEmail" data-i18n="profile.defaultEmail">Tap to view details</small>
-        </span>
-      </button>
+      <div class="topbar-actions">
+        <button class="evaluation-trigger" id="evaluationTrigger" type="button" aria-label="View score and evaluation">
+          <span class="evaluation-icon" aria-hidden="true">%</span>
+          <span class="evaluation-meta">
+            <strong data-i18n="evaluation.button">Your Score</strong>
+            <small id="topScoreLabel" data-i18n="evaluation.view">View evaluation</small>
+          </span>
+        </button>
+
+        <button class="profile-trigger" id="profileTrigger" type="button" aria-label="View profile">
+          <span class="profile-avatar" id="profileAvatar">U</span>
+          <span class="profile-meta">
+            <strong id="topProfileName" data-i18n="profile.defaultName">User Profile</strong>
+            <small id="topProfileEmail" data-i18n="profile.defaultEmail">Tap to view details</small>
+          </span>
+        </button>
+      </div>
     </header>
 
     <main class="app-layout">
@@ -49,17 +59,19 @@
           </select>
         </div>
 
+
         <nav class="module-nav">
-          <button class="module-link is-active" type="button" data-page="home" data-i18n="nav.home">Home</button>
-          <button class="module-link" type="button" data-page="contents" data-i18n="nav.contents">Main Sections</button>
-          <button class="module-link" type="button" data-page="dashboard" data-i18n="nav.dashboard">Overview</button>
-          <button class="module-link" type="button" data-page="multi-service" data-i18n="nav.multi">Wetland Benefits Value</button>
-          <button class="module-link" type="button" data-page="stacked-bar" data-i18n="nav.stacked">Service Chart</button>
-          <button class="module-link" type="button" data-page="scenario" data-i18n="nav.scenario">Plan Comparison</button>
-          <button class="module-link" type="button" data-page="per-hectare" data-i18n="nav.hectare">Per Hectare Value</button>
-          <button class="module-link" type="button" data-page="net-value" data-i18n="nav.net">Final Value</button>
-          <button class="module-link" type="button" data-page="wetland-map" data-i18n="nav.map">Wetland Map</button>
-          <button class="module-link" type="button" data-page="media" data-i18n="nav.media">Pictures and Videos</button>
+          <button class="module-link is-active" type="button" data-page="home" data-icon="home" data-i18n="nav.home">Home</button>
+          <button class="module-link" type="button" data-page="contents" data-icon="grid" data-i18n="nav.contents">Main Sections</button>
+          <button class="module-link" type="button" data-page="dashboard" data-icon="pulse" data-i18n="nav.dashboard">Overview</button>
+          <button class="module-link" type="button" data-page="multi-service" data-icon="leaf" data-i18n="nav.multi">Wetland Benefits Value</button>
+          <button class="module-link" type="button" data-page="stacked-bar" data-icon="bars" data-i18n="nav.stacked">Service Chart</button>
+          <button class="module-link" type="button" data-page="scenario" data-icon="path" data-i18n="nav.scenario">Plan Comparison</button>
+          <button class="module-link" type="button" data-page="per-hectare" data-icon="scope" data-i18n="nav.hectare">Per Hectare Value</button>
+          <button class="module-link" type="button" data-page="net-value" data-icon="spark" data-i18n="nav.net">Final Value</button>
+          <button class="module-link" type="button" data-page="wetland-map" data-icon="map" data-i18n="nav.map">Wetland Map</button>
+          <button class="module-link" type="button" data-page="media" data-icon="media" data-i18n="nav.media">Pictures and Videos</button>
+          <button class="module-link" type="button" data-page="admin" data-icon="admin" data-i18n="nav.admin">Admin</button>
         </nav>
       </aside>
 
@@ -127,42 +139,42 @@
             </div>
 
             <div class="home-modules-grid home-modules-grid-wide">
-              <button class="mini-module-card jump-button" type="button" data-page-target="dashboard">
+              <button class="mini-module-card jump-button" type="button" data-page-target="dashboard" data-icon="pulse">
                 <span>00</span>
                 <strong data-i18n="contents.cardDashboardTitle">Overview</strong>
                 <small data-i18n="contents.cardDashboardDesc">Quick summary of the app</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="multi-service">
+              <button class="mini-module-card jump-button" type="button" data-page-target="multi-service" data-icon="leaf">
                 <span>01</span>
                 <strong data-i18n="contents.card1Title">Wetland Benefits Value</strong>
                 <small data-i18n="contents.card1Desc">Total value of different wetland benefits</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="stacked-bar">
+              <button class="mini-module-card jump-button" type="button" data-page-target="stacked-bar" data-icon="bars">
                 <span>02</span>
                 <strong data-i18n="contents.card2Title">Service Chart</strong>
                 <small data-i18n="contents.card2Desc">See how each service contributes</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="scenario">
+              <button class="mini-module-card jump-button" type="button" data-page-target="scenario" data-icon="path">
                 <span>03</span>
                 <strong data-i18n="contents.card3Title">Plan Comparison</strong>
                 <small data-i18n="contents.card3Desc">Compare different wetland plans</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="per-hectare">
+              <button class="mini-module-card jump-button" type="button" data-page-target="per-hectare" data-icon="scope">
                 <span>04</span>
                 <strong data-i18n="contents.card4Title">Per Hectare Value</strong>
                 <small data-i18n="contents.card4Desc">Value for one hectare area</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="net-value">
+              <button class="mini-module-card jump-button" type="button" data-page-target="net-value" data-icon="spark">
                 <span>05</span>
                 <strong data-i18n="contents.card5Title">Final Value</strong>
                 <small data-i18n="contents.card5Desc">Value after cost deduction</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="media">
+              <button class="mini-module-card jump-button" type="button" data-page-target="media" data-icon="media">
                 <span>06</span>
                 <strong data-i18n="contents.card6Title">Pictures and Videos</strong>
                 <small data-i18n="contents.card6Desc">Wetland gallery and YouTube links</small>
               </button>
-              <button class="mini-module-card jump-button" type="button" data-page-target="wetland-map">
+              <button class="mini-module-card jump-button" type="button" data-page-target="wetland-map" data-icon="map">
                 <span>07</span>
                 <strong data-i18n="contents.card7Title">Wetland Map</strong>
                 <small data-i18n="contents.card7Desc">Locate each wetland on an interactive map</small>
@@ -293,6 +305,11 @@
                 <strong id="dashboardNetValue">₹49,00,000</strong>
                 <small data-i18n="dashboard.metric3Desc">After management and protection costs</small>
               </article>
+            </div>
+            <div class="insight-strip dashboard-insight-strip">
+              <span class="insight-chip insight-chip-accent" id="dashboardTopServiceChip">Top service: Biodiversity</span>
+              <span class="insight-chip" id="dashboardAreaChip">Coverage: 135 ha</span>
+              <span class="insight-chip" id="dashboardNetChip">Net outlook: Strong positive</span>
             </div>
             <div class="nature-band" aria-hidden="true">
               <div class="tree tree-left">
@@ -433,6 +450,10 @@
                 <div class="mini-stat"><span data-i18n="stacked.bench1">Most water value</span><strong id="peakWaterLabel" data-i18n="stacked.bench1Value">Restored plan</strong></div>
                 <div class="mini-stat"><span data-i18n="stacked.bench2">Highest custom share</span><strong id="customPeakLabel">Biodiversity</strong></div>
               </div>
+              <div class="insight-strip">
+                <span class="insight-chip insight-chip-accent" id="serviceInsightChip">Highest share: Biodiversity</span>
+                <span class="insight-chip" id="serviceBalanceChip">Balance: Services are diversified</span>
+              </div>
             </article>
           </div>
           <div class="nature-band" aria-hidden="true">
@@ -489,6 +510,10 @@
               <div class="mini-stat-grid two-col">
                 <div class="mini-stat"><span data-i18n="scenario.info1">Region</span><strong data-i18n="scenario.info1Value">Sundarbans belt</strong></div>
                 <div class="mini-stat"><span data-i18n="scenario.info2">Focus</span><strong data-i18n="scenario.info2Value">Resilience and services</strong></div>
+              </div>
+              <div class="insight-strip">
+                <span class="insight-chip insight-chip-accent" id="scenarioPlanChip">Active plan: Current Wetland</span>
+                <span class="insight-chip" id="scenarioFocusChip">Focus: Resilience and services</span>
               </div>
             </article>
           </div>
@@ -784,6 +809,207 @@
             <div class="water-ripple ripple-two"></div>
           </div>
         </section>
+
+        <section class="page-view" data-page="quiz">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="quiz.small">Onboarding Quiz</p>
+              <h2 data-i18n="quiz.title">Test Your Wetland Awareness</h2>
+            </div>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card wide-card quiz-panel">
+              <div class="media-header">
+                <div>
+                  <p class="eyebrow" data-i18n="quiz.headerSmall">3 Quick Questions</p>
+                  <h3 id="quizHeading" data-i18n="quiz.headerTitle">Answer all questions to continue</h3>
+                </div>
+                <span class="status-pill" id="quizProgressLabel">1 / 3</span>
+              </div>
+
+              <div class="quiz-card">
+                <p class="eyebrow" id="quizQuestionNumber">Question 1</p>
+                <h3 id="quizQuestionText">What is a wetland?</h3>
+                <div class="quiz-options" id="quizOptions"></div>
+              </div>
+
+              <div class="quiz-actions">
+                <button class="button ghost-button" type="button" id="quizBackButton" data-i18n="quiz.back">Previous</button>
+                <button class="button button-primary" type="button" id="quizNextButton" data-i18n="quiz.next">Next</button>
+              </div>
+
+              <p class="login-note" id="quizStatus" data-i18n="quiz.note">Choose one option for each question.</p>
+            </article>
+          </div>
+
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="basics-intro">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="learn.small">Learning Path</p>
+              <h2 data-i18n="learn.title">Wetland Basics</h2>
+            </div>
+          </div>
+
+          <div class="page-grid">
+            <article class="panel-card wide-card learn-card">
+              <p class="eyebrow" data-i18n="learn.page1Small">Basics 1</p>
+              <h3 id="learnTitle1" data-i18n="learn.page1Title">What are wetlands?</h3>
+              <p id="learnText1" data-i18n="learn.page1Text">Wetlands are areas where land is covered by water for all or part of the year. They act as a transition between land and water systems and can be freshwater, brackish, or saline.</p>
+              <ul class="learn-list">
+                <li data-i18n="learn.page1Point1">They may be permanently or seasonally waterlogged.</li>
+                <li data-i18n="learn.page1Point2">Wetlands include marshes, swamps, mangroves, lakesides, floodplains, and lagoons.</li>
+                <li data-i18n="learn.page1Point3">They support both aquatic and terrestrial life.</li>
+              </ul>
+              <div class="hero-actions">
+                <button class="button button-primary learn-next" type="button" data-next-page="basics-types" data-i18n="learn.next">Next</button>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="basics-types">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="learn.page2Small">Basics 2</p>
+              <h2 data-i18n="learn.title">Wetland Basics</h2>
+            </div>
+          </div>
+          <div class="page-grid">
+            <article class="panel-card wide-card learn-card">
+              <h3 data-i18n="learn.page2Title">Types of wetlands</h3>
+              <p data-i18n="learn.page2Text">Wetlands are not all the same. Different wetland types perform different ecological roles depending on water depth, salinity, vegetation, and geography.</p>
+              <div class="mini-stat-grid two-col learn-grid">
+                <div class="mini-stat"><span data-i18n="learn.page2Type1Title">Marshes</span><strong data-i18n="learn.page2Type1Text">Shallow wetlands with grasses and reeds.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page2Type2Title">Swamps</span><strong data-i18n="learn.page2Type2Text">Wetlands dominated by trees and shrubs.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page2Type3Title">Mangroves</span><strong data-i18n="learn.page2Type3Text">Coastal wetlands with salt-tolerant vegetation.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page2Type4Title">Lagoons and lakesides</span><strong data-i18n="learn.page2Type4Text">Water-rich zones supporting birds, fish, and aquatic life.</strong></div>
+              </div>
+              <div class="hero-actions">
+                <button class="button ghost-button learn-next" type="button" data-next-page="basics-intro" data-i18n="learn.back">Previous</button>
+                <button class="button button-primary learn-next" type="button" data-next-page="basics-importance" data-i18n="learn.next">Next</button>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="basics-importance">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="learn.page3Small">Basics 3</p>
+              <h2 data-i18n="learn.title">Wetland Basics</h2>
+            </div>
+          </div>
+          <div class="page-grid">
+            <article class="panel-card wide-card learn-card">
+              <h3 data-i18n="learn.page3Title">Why wetlands are important</h3>
+              <p data-i18n="learn.page3Text">Wetlands provide ecological, social, and economic benefits. They are among the most productive ecosystems in the world.</p>
+              <ul class="learn-list">
+                <li data-i18n="learn.page3Point1">They reduce floods by storing excess water.</li>
+                <li data-i18n="learn.page3Point2">They improve water quality by trapping sediments and pollutants.</li>
+                <li data-i18n="learn.page3Point3">They support biodiversity including fish, birds, and plant species.</li>
+                <li data-i18n="learn.page3Point4">They store carbon and help regulate climate.</li>
+                <li data-i18n="learn.page3Point5">They support fisheries, tourism, and local livelihoods.</li>
+              </ul>
+              <div class="hero-actions">
+                <button class="button ghost-button learn-next" type="button" data-next-page="basics-types" data-i18n="learn.back">Previous</button>
+                <button class="button button-primary learn-next" type="button" data-next-page="basics-threats" data-i18n="learn.next">Next</button>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="basics-threats">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="learn.page4Small">Basics 4</p>
+              <h2 data-i18n="learn.title">Wetland Basics</h2>
+            </div>
+          </div>
+          <div class="page-grid">
+            <article class="panel-card wide-card learn-card">
+              <h3 data-i18n="learn.page4Title">Threats and conservation</h3>
+              <p data-i18n="learn.page4Text">Wetlands are under pressure from many human and environmental threats, so conservation is essential.</p>
+              <div class="mini-stat-grid two-col learn-grid">
+                <div class="mini-stat"><span data-i18n="learn.page4Threat1Title">Pollution</span><strong data-i18n="learn.page4Threat1Text">Industrial waste, sewage, and plastic damage water quality.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page4Threat2Title">Encroachment</span><strong data-i18n="learn.page4Threat2Text">Construction and land conversion shrink wetland area.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page4Threat3Title">Climate change</span><strong data-i18n="learn.page4Threat3Text">Changing rainfall and temperatures disturb wetland balance.</strong></div>
+                <div class="mini-stat"><span data-i18n="learn.page4Threat4Title">Conservation</span><strong data-i18n="learn.page4Threat4Text">Protection, restoration, awareness, and better planning are necessary.</strong></div>
+              </div>
+              <p class="login-note" data-i18n="learn.page4Note">Now that you know the basics, you can continue to the full JalVistaar app.</p>
+              <div class="hero-actions">
+                <button class="button ghost-button learn-next" type="button" data-next-page="basics-importance" data-i18n="learn.back">Previous</button>
+                <button class="button button-primary" type="button" id="enterMainAppButton" data-i18n="learn.enterApp">Continue to App</button>
+              </div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="admin">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow" data-i18n="admin.small">Admin View</p>
+              <h2 data-i18n="admin.title">Quiz Records</h2>
+            </div>
+            <button class="back-chip jump-button" type="button" data-page-target="contents" data-i18n="common.back">Back</button>
+          </div>
+          <div class="page-grid">
+            <article class="panel-card wide-card">
+              <div class="media-header">
+                <div>
+                  <p class="eyebrow" data-i18n="admin.headerSmall">Stored Responses</p>
+                  <h3 data-i18n="admin.headerTitle">User quiz attempts and access path</h3>
+                </div>
+                <div class="admin-actions">
+                  <span class="status-pill" id="adminRecordCount">0 records</span>
+                  <button class="button ghost-button admin-clear-button" type="button" id="clearAdminRecordsButton">Clear Records</button>
+                </div>
+              </div>
+              <div id="adminEmptyState" class="map-info-card">
+                <p data-i18n="admin.empty">No quiz attempts have been recorded yet.</p>
+              </div>
+              <div id="adminRecordsTable"></div>
+            </article>
+          </div>
+          <div class="nature-band" aria-hidden="true">
+            <div class="tree tree-left"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <div class="tree tree-right"><div class="tree-canopy"></div><div class="tree-trunk"></div></div>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="leaf leaf-three"></span><span class="leaf leaf-four"></span>
+            <div class="water-layer water-back"></div><div class="water-layer water-front"></div><div class="water-ripple ripple-one"></div><div class="water-ripple ripple-two"></div>
+          </div>
+        </section>
       </section>
     </main>
   </div>
@@ -880,6 +1106,20 @@
 
       <button type="button" class="button ghost-button login-submit" id="logoutButton" data-i18n="profile.logout">Logout</button>
       <button type="button" class="button button-primary login-submit" id="closeProfile" data-i18n="common.close">Close</button>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="evaluationOverlay">
+    <div class="login-card evaluation-card">
+      <div class="login-card-head">
+        <p class="eyebrow" data-i18n="evaluation.small">Quiz Review</p>
+        <h2 data-i18n="evaluation.title">Your Score & Evaluation</h2>
+        <p class="login-copy" id="evaluationSummary" data-i18n="evaluation.summaryDefault">Your saved quiz performance will appear here.</p>
+      </div>
+
+      <div class="evaluation-list" id="evaluationList"></div>
+
+      <button type="button" class="button button-primary login-submit" id="closeEvaluation" data-i18n="common.close">Close</button>
     </div>
   </div>
 
